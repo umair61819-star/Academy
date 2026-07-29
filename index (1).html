@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ansari Academy — Welcome to Ansari Academy</title>
+<meta name="description" content="Ansari Academy is a modern learning platform offering personalized programs, expert instructors, and evidence-based curriculum for students from middle school through college prep.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230A0E1A' stroke='%23CB9B51' stroke-width='4'/%3E%3Cline x1='50' y1='12' x2='50' y2='88' stroke='%23CB9B51' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='5' fill='%23CB9B51'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================= */
+  /* TOKENS                         */
+  /* ============================= */
+  :root{
+    --ink:#0A0E1A;
+    --ink-2:#0D1322;
+    --surface:#141B2E;
+    --surface-light:#1E2840;
+    --border: rgba(243,240,232,0.09);
+    --border-strong: rgba(243,240,232,0.16);
+    --gold:#CB9B51;
+    --gold-bright:#E8C078;
+    --teal:#4FD1C5;
+    --paper:#F3F0E8;
+    --paper-dim:#C9C6BD;
+    --slate:#8993AA;
+    --error:#E0796F;
+    --radius-sm:8px;
+    --radius-md:14px;
+    --radius-lg:26px;
+    --shadow-1: 0 1px 2px rgba(0,0,0,0.45);
+    --shadow-2: 0 20px 50px -12px rgba(0,0,0,0.55);
+    --ease: cubic-bezier(.22,.61,.36,1);
+    --container: 1180px;
+    --nav-h: 76px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{font-size:16px; scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Plus Jakarta Sans', -apple-system, sans-serif;
+    background:var(--ink);
+    color:var(--paper);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none; margin:0; padding:0;}
+  button{font:inherit; cursor:pointer;}
+  input,textarea,select{font:inherit;}
+
+  h1,h2,h3,h4,.display{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:500;
+    line-height:1.1;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  em{font-style:italic; color:var(--gold-bright); font-weight:500;}
+  p{margin:0;}
+
+  .mono{font-family:'JetBrains Mono', monospace;}
+
+  ::selection{ background: var(--gold); color: var(--ink); }
+
+  :focus-visible{
+    outline: 2px solid var(--gold-bright);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .visually-hidden{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  .skip-link{
+    position:fixed; top:-60px; left:1rem; z-index:999;
+    background:var(--gold); color:var(--ink); padding:.7rem 1.2rem;
+    border-radius:var(--radius-sm); font-weight:700; transition:top .25s var(--ease);
+  }
+  .skip-link:focus{ top:1rem; }
+
+  .container{
+    width:100%; max-width:var(--container); margin:0 auto; padding:0 1.5rem;
+  }
+
+  section{ position:relative; }
+
+  /* ============================= */
+  /* TYPE SCALE                     */
+  /* ============================= */
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:.6rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:.76rem; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--gold); font-weight:500;
+  }
+  .eyebrow::before{
+    content:""; width:22px; height:1px; background:var(--gold);
+  }
+  .section-heading{
+    font-size:clamp(2rem, 1.4rem + 2.6vw, 3.1rem);
+    margin-top:1rem;
+    max-width:18ch;
+  }
+  .section-lead{
+    font-size:1.05rem; color:var(--paper-dim); max-width:46ch; margin-top:1.1rem;
+  }
+  .section-head{
+    margin-bottom:3.2rem;
+  }
+  .section-head.center{ text-align:center; margin-left:auto; margin-right:auto; }
+  .section-head.center .section-heading,
+  .section-head.center .section-lead{ margin-left:auto; margin-right:auto; }
+
+  /* ============================= */
+  /* BUTTONS                        */
+  /* ============================= */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+    padding:.95rem 1.7rem; border-radius:999px; font-weight:600; font-size:.95rem;
+    border:1px solid transparent; transition:transform .35s var(--ease), background .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
+    white-space:nowrap;
+  }
+  .btn--primary{
+    background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+    color:var(--ink); box-shadow: 0 10px 24px -8px rgba(203,155,81,.55);
+  }
+  .btn--primary:hover{ transform:translateY(-2px); box-shadow: 0 16px 32px -10px rgba(203,155,81,.7); }
+  .btn--ghost{
+    background:transparent; color:var(--paper); border-color:var(--border-strong);
+  }
+  .btn--ghost:hover{ border-color:var(--gold); color:var(--gold-bright); transform:translateY(-2px); }
+  .btn--sm{ padding:.7rem 1.2rem; font-size:.85rem; }
+  .btn--block{ width:100%; }
+  .btn__icon{ display:inline-flex; }
+  .btn[disabled]{ opacity:.7; cursor:not-allowed; transform:none !important; }
+
+  /* ============================= */
+  /* HEADER / NAV                   */
+  /* ============================= */
+  .site-header{
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    height:var(--nav-h); display:flex; align-items:center;
+    background:rgba(10,14,26,0); border-bottom:1px solid transparent;
+    transition:background .4s var(--ease), border-color .4s var(--ease), height .4s var(--ease), backdrop-filter .4s var(--ease);
+  }
+  .site-header.scrolled{
+    background:rgba(10,14,26,0.86); backdrop-filter:blur(14px) saturate(140%);
+    border-bottom:1px solid var(--border); height:64px;
+  }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; width:100%; }
+
+  .brand{ display:flex; align-items:center; gap:.65rem; font-weight:700; }
+  .brand__mark{ width:34px; height:34px; flex-shrink:0; }
+  .brand__text{ display:flex; flex-direction:column; line-height:1.05; }
+  .brand__name{ font-family:'Fraunces', serif; font-size:1.12rem; color:var(--paper); }
+  .brand__sub{ font-family:'JetBrains Mono', monospace; font-size:.6rem; letter-spacing:.2em; color:var(--slate); }
+
+  .nav-links{ display:flex; align-items:center; gap:2.1rem; }
+  .nav-links a{
+    position:relative; font-size:.92rem; color:var(--paper-dim); font-weight:500;
+    padding:.4rem 0; transition:color .25s var(--ease);
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; right:0; bottom:-2px; height:2px;
+    background:var(--gold); transform:scaleX(0); transform-origin:left;
+    transition:transform .35s var(--ease);
+  }
+  .nav-links a:hover,
+  .nav-links a.active{ color:var(--paper); }
+  .nav-links a:hover::after,
+  .nav-links a.active::after{ transform:scaleX(1); }
+
+  .nav-cta{ display:flex; align-items:center; gap:1rem; }
+
+  .nav-toggle{
+    display:none; flex-direction:column; gap:5px; background:none; border:0; padding:.4rem;
+  }
+  .nav-toggle span{ width:22px; height:2px; background:var(--paper); transition:transform .35s var(--ease), opacity .25s var(--ease); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+  /* ============================= */
+  /* HERO                           */
+  /* ============================= */
+  .hero{
+    min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+    padding-top:calc(var(--nav-h) + 2rem); padding-bottom:3rem; overflow:hidden;
+    background:
+      radial-gradient(ellipse 70% 60% at 80% 0%, rgba(79,209,197,0.08), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 15% 10%, rgba(203,155,81,0.10), transparent 60%),
+      var(--ink);
+  }
+  .hero__canvas{ position:absolute; inset:0; width:100%; height:100%; opacity:.85; }
+  .hero__overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 40%, var(--ink) 96%);
+    pointer-events:none;
+  }
+  .hero__inner{ position:relative; z-index:2; padding-top:2rem; }
+  .hero__headline{ font-size:clamp(2.5rem, 1.6rem + 4.4vw, 4.8rem); max-width:16ch; margin-top:1.3rem; }
+  .hero__sub{ font-size:1.12rem; color:var(--paper-dim); max-width:42ch; margin-top:1.6rem; }
+  .hero__actions{ display:flex; align-items:center; gap:1rem; margin-top:2.4rem; flex-wrap:wrap; }
+
+  [data-reveal]{
+    opacity:0; transform:translateY(26px);
+    transition:opacity .8s var(--ease), transform .8s var(--ease);
+  }
+  [data-reveal].is-visible{ opacity:1; transform:none; }
+
+  /* Ledger / transcript motif */
+  .ledger-bg{
+    position:relative;
+  }
+  .ledger-bg::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:1px;
+    background:linear-gradient(180deg, transparent, var(--gold), transparent);
+    opacity:.5;
+  }
+
+  .stats{
+    position:relative; z-index:2; margin-top:4.5rem;
+    display:grid; grid-template-columns:repeat(4, 1fr);
+    border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+    padding:1rem 0;
+  }
+  .stat{
+    padding:1.1rem 1.6rem; border-left:1px solid var(--border);
+    display:flex; flex-direction:column; gap:.3rem;
+  }
+  .stat:first-child{ border-left:1px solid var(--gold); }
+  .stat__value{
+    font-family:'JetBrains Mono', monospace; font-size:1.7rem; font-weight:600; color:var(--gold-bright);
+  }
+  .stat__label{ font-size:.82rem; color:var(--slate); }
+
+  /* ============================= */
+  /* ABOUT                          */
+  /* ============================= */
+  .about{ padding:8rem 0 7rem; background:var(--ink-2); }
+  .about__grid{ display:grid; grid-template-columns:1fr 1fr; gap:4.5rem; align-items:start; }
+  .about__copy p{ color:var(--paper-dim); font-size:1.02rem; margin-top:1.2rem; }
+  .about__copy p:first-of-type{ margin-top:1.4rem; }
+
+  .process{ margin-top:2.6rem; display:flex; flex-direction:column; }
+  .process__step{
+    display:grid; grid-template-columns:3.4rem 1fr; gap:1.1rem;
+    padding:1.3rem 0; border-top:1px solid var(--border);
+  }
+  .process__step:last-child{ border-bottom:1px solid var(--border); }
+  .process__num{
+    font-family:'JetBrains Mono', monospace; color:var(--gold); font-size:.95rem; padding-top:.15rem;
+  }
+  .process__title{ font-size:1.04rem; font-weight:700; color:var(--paper); }
+  .process__desc{ font-size:.92rem; color:var(--slate); margin-top:.35rem; }
+
+  .credentials{
+    margin-top:2.6rem; display:flex; gap:2.2rem; flex-wrap:wrap;
+  }
+  .credentials div{ display:flex; flex-direction:column; gap:.2rem; }
+  .credentials .v{ font-family:'JetBrains Mono', monospace; color:var(--teal); font-weight:600; font-size:1.1rem; }
+  .credentials .l{ font-size:.78rem; color:var(--slate); }
+
+  .about__visual{
+    border:1px solid var(--border-strong); border-radius:var(--radius-lg);
+    background:linear-gradient(160deg, var(--surface), var(--ink-2));
+    padding:2.4rem; position:relative; overflow:hidden; min-height:460px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .about__visual::after{
+    content:""; position:absolute; inset:0; opacity:.5;
+    background-image:repeating-linear-gradient(180deg, transparent, transparent 27px, var(--border) 28px);
+  }
+  .about__visual-card{
+    position:relative; z-index:1; background:rgba(10,14,26,.6); border:1px solid var(--border-strong);
+    border-radius:var(--radius-md); padding:1.2rem 1.4rem; backdrop-filter:blur(6px);
+  }
+  .about__visual-card + .about__visual-card{ margin-top:1rem; }
+  .about__visual-card h4{ font-size:1rem; color:var(--paper); font-weight:600; font-family:'Plus Jakarta Sans',sans-serif; }
+  .about__visual-card p{ font-size:.83rem; color:var(--slate); margin-top:.3rem; }
+  .about__visual-tag{
+    align-self:flex-start; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.1em;
+    color:var(--gold); border:1px solid var(--gold); border-radius:999px; padding:.35rem .8rem; position:relative; z-index:1;
+  }
+
+  /* ============================= */
+  /* PROGRAMS                       */
+  /* ============================= */
+  .programs{ padding:8rem 0; }
+  .programs__grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem; }
+  .program-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:2.1rem; transition:transform .45s var(--ease), border-color .35s var(--ease), background .35s var(--ease);
+    display:flex; flex-direction:column; height:100%;
+  }
+  .program-card:hover{
+    transform:translateY(-6px); border-color:var(--gold); background:var(--surface-light);
+  }
+  .program-card__icon{
+    width:46px; height:46px; border-radius:12px; background:rgba(203,155,81,.12);
+    display:flex; align-items:center; justify-content:center; color:var(--gold-bright);
+    margin-bottom:1.6rem; transition:background .35s var(--ease), transform .45s var(--ease);
+  }
+  .program-card:hover .program-card__icon{ background:rgba(203,155,81,.22); transform:scale(1.07) rotate(-4deg); }
+  .program-card__code{
+    font-family:'JetBrains Mono', monospace; font-size:.74rem; letter-spacing:.12em; color:var(--teal);
+  }
+  .program-card__title{ font-size:1.22rem; margin-top:.55rem; color:var(--paper); font-family:'Fraunces',serif; font-weight:500; }
+  .program-card__desc{ font-size:.92rem; color:var(--slate); margin-top:.7rem; flex-grow:1; }
+  .program-card__link{
+    margin-top:1.4rem; font-size:.86rem; font-weight:600; color:var(--paper);
+    display:inline-flex; align-items:center; gap:.4rem;
+  }
+  .program-card__link svg{ width:14px; height:14px; transition:transform .3s var(--ease); }
+  .program-card:hover .program-card__link svg{ transform:translateX(4px); }
+
+  /* ============================= */
+  /* TESTIMONIALS                   */
+  /* ============================= */
+  .testimonials{ padding:8rem 0; background:var(--ink-2); }
+  .t-spotlight{
+    max-width:760px; margin:0 auto; position:relative;
+  }
+  .t-track-wrap{ overflow:hidden; }
+  .t-track{ display:flex; transition:transform .6s var(--ease); }
+  .t-slide{ flex:0 0 100%; padding:.5rem; }
+  .t-card{
+    background:var(--surface); border:1px solid var(--border-strong); border-radius:var(--radius-lg);
+    padding:2.8rem; text-align:center;
+  }
+  .t-stars{ display:flex; justify-content:center; gap:.3rem; color:var(--gold); margin-bottom:1.4rem; }
+  .t-stars svg{ width:18px; height:18px; }
+  .t-quote{ font-family:'Fraunces', serif; font-size:1.4rem; font-weight:400; line-height:1.45; color:var(--paper); }
+  .t-person{ display:flex; align-items:center; justify-content:center; gap:.8rem; margin-top:1.8rem; }
+  .t-avatar{
+    width:42px; height:42px; border-radius:50%; background:linear-gradient(160deg, var(--gold), var(--teal));
+    display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono', monospace;
+    font-weight:700; color:var(--ink); font-size:.85rem;
+  }
+  .t-person__info{ text-align:left; }
+  .t-name{ font-weight:700; font-size:.92rem; color:var(--paper); }
+  .t-role{ font-size:.8rem; color:var(--slate); }
+
+  .t-controls{ display:flex; align-items:center; justify-content:center; gap:1.6rem; margin-top:2.2rem; }
+  .t-arrow{
+    width:42px; height:42px; border-radius:50%; border:1px solid var(--border-strong); background:transparent;
+    color:var(--paper); display:flex; align-items:center; justify-content:center; transition:all .3s var(--ease);
+  }
+  .t-arrow:hover{ border-color:var(--gold); color:var(--gold-bright); transform:translateY(-2px); }
+  .t-arrow svg{ width:18px; height:18px; }
+  .t-dots{ display:flex; gap:.5rem; }
+  .t-dot{
+    width:8px; height:8px; border-radius:50%; background:var(--border-strong); border:0; padding:0; transition:all .3s var(--ease);
+  }
+  .t-dot.active{ background:var(--gold); width:22px; border-radius:5px; }
+
+  /* ============================= */
+  /* CONTACT                        */
+  /* ============================= */
+  .contact{ padding:8rem 0; }
+  .contact__grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:4.5rem; }
+  .contact__info{ padding-left:1.6rem; }
+  .info-row{
+    padding:1.3rem 0; border-top:1px solid var(--border); display:flex; gap:1rem; align-items:flex-start;
+  }
+  .info-row:last-of-type{ border-bottom:1px solid var(--border); }
+  .info-row__icon{ color:var(--gold); flex-shrink:0; margin-top:.15rem; }
+  .info-row__icon svg{ width:19px; height:19px; }
+  .info-row__label{ font-size:.74rem; letter-spacing:.1em; text-transform:uppercase; color:var(--slate); font-family:'JetBrains Mono',monospace; }
+  .info-row__value{ font-size:1rem; color:var(--paper); margin-top:.3rem; font-weight:500; }
+
+  .social-row{ display:flex; gap:.8rem; margin-top:2rem; }
+  .social-row a{
+    width:40px; height:40px; border-radius:50%; border:1px solid var(--border-strong);
+    display:flex; align-items:center; justify-content:center; color:var(--paper-dim);
+    transition:all .3s var(--ease);
+  }
+  .social-row a:hover{ border-color:var(--gold); color:var(--gold-bright); transform:translateY(-3px); }
+  .social-row svg{ width:17px; height:17px; }
+
+  .form-card{
+    background:var(--surface); border:1px solid var(--border-strong); border-radius:var(--radius-lg);
+    padding:2.6rem;
+  }
+  .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.3rem; }
+  .field{ position:relative; margin-top:1.3rem; }
+  .form-grid .field{ margin-top:0; }
+  .field label{
+    position:absolute; left:1rem; top:1rem; font-size:.95rem; color:var(--slate);
+    pointer-events:none; transition:all .25s var(--ease); background:var(--surface); padding:0 .3rem;
+  }
+  .field input, .field textarea, .field select{
+    width:100%; background:var(--ink-2); border:1px solid var(--border-strong); border-radius:var(--radius-sm);
+    padding:1rem; color:var(--paper); transition:border-color .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .field select{ appearance:none; }
+  .field textarea{ resize:vertical; min-height:120px; }
+  .field input:focus, .field textarea:focus, .field select:focus{
+    outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(203,155,81,.15);
+  }
+  .field input:focus + label,
+  .field input:not(:placeholder-shown) + label,
+  .field textarea:focus + label,
+  .field textarea:not(:placeholder-shown) + label,
+  .field select:focus + label,
+  .field select.has-value + label{
+    top:-.55rem; left:.8rem; font-size:.74rem; color:var(--gold-bright);
+  }
+  .field-error{
+    font-size:.78rem; color:var(--error); margin-top:.4rem; min-height:1em; display:block;
+  }
+  .field.invalid input, .field.invalid textarea, .field.invalid select{ border-color:var(--error); }
+
+  .form-foot{ display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:1.8rem; flex-wrap:wrap; }
+  .form-note{ font-size:.78rem; color:var(--slate); max-width:24ch; }
+
+  .submit-spinner{
+    width:16px; height:16px; border-radius:50%; border:2px solid rgba(10,14,26,.3); border-top-color:var(--ink);
+    animation:spin .7s linear infinite; display:none;
+  }
+  .btn.is-loading .submit-spinner{ display:inline-block; }
+  .btn.is-loading .btn__label{ opacity:.6; }
+  @keyframes spin{ to{ transform:rotate(360deg);} }
+
+  .form-success{
+    display:none; align-items:center; gap:.9rem; background:rgba(79,209,197,.1); border:1px solid var(--teal);
+    border-radius:var(--radius-md); padding:1.1rem 1.3rem; margin-top:1.5rem;
+  }
+  .form-success.show{ display:flex; }
+  .form-success svg{ width:22px; height:22px; color:var(--teal); flex-shrink:0; }
+  .form-success p{ font-size:.92rem; color:var(--paper); }
+  .form-success strong{ color:var(--teal); }
+
+  /* ============================= */
+  /* FOOTER                         */
+  /* ============================= */
+  .site-footer{ background:var(--ink-2); border-top:1px solid var(--border); padding:5rem 0 2rem; }
+  .footer-top{ display:grid; grid-template-columns:1.4fr .8fr .8fr 1.1fr; gap:3rem; }
+  .footer-brand p{ font-size:.88rem; color:var(--slate); margin-top:1rem; max-width:30ch; }
+  .footer-col h5{ font-family:'JetBrains Mono', monospace; font-size:.74rem; letter-spacing:.12em; text-transform:uppercase; color:var(--slate); }
+  .footer-col ul{ margin-top:1.2rem; display:flex; flex-direction:column; gap:.75rem; }
+  .footer-col a{ font-size:.92rem; color:var(--paper-dim); transition:color .25s var(--ease); }
+  .footer-col a:hover{ color:var(--gold-bright); }
+
+  .newsletter-form{ display:flex; gap:.6rem; margin-top:1.2rem; }
+  .newsletter-form input{
+    flex:1; min-width:0; background:var(--surface); border:1px solid var(--border-strong); border-radius:999px;
+    padding:.8rem 1.1rem; color:var(--paper); font-size:.85rem;
+  }
+  .newsletter-form input:focus{ outline:none; border-color:var(--gold); }
+  .newsletter-form button{
+    background:var(--gold); color:var(--ink); border:0; border-radius:999px; width:42px; height:42px;
+    flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:transform .3s var(--ease), background .3s var(--ease);
+  }
+  .newsletter-form button:hover{ background:var(--gold-bright); transform:scale(1.06); }
+  .newsletter-form svg{ width:16px; height:16px; }
+  .newsletter-msg{ font-size:.78rem; color:var(--teal); margin-top:.6rem; min-height:1em; }
+
+  .footer-bottom{
+    margin-top:4rem; padding-top:1.8rem; border-top:1px solid var(--border);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;
+  }
+  .footer-bottom p{ font-size:.8rem; color:var(--slate); }
+  .footer-legal{ display:flex; gap:1.6rem; }
+  .footer-legal a{ font-size:.8rem; color:var(--slate); }
+  .footer-legal a:hover{ color:var(--paper); }
+
+  /* ============================= */
+  /* BACK TO TOP                    */
+  /* ============================= */
+  .back-to-top{
+    position:fixed; right:1.6rem; bottom:1.6rem; z-index:150;
+    width:46px; height:46px; border-radius:50%; background:var(--surface-light); border:1px solid var(--border-strong);
+    color:var(--gold-bright); display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none; transform:translateY(10px);
+    transition:opacity .35s var(--ease), transform .35s var(--ease), border-color .3s var(--ease);
+  }
+  .back-to-top.visible{ opacity:1; pointer-events:auto; transform:none; }
+  .back-to-top:hover{ border-color:var(--gold); }
+  .back-to-top svg{ width:18px; height:18px; }
+
+  /* ============================= */
+  /* RESPONSIVE                     */
+  /* ============================= */
+  @media (max-width: 1024px){
+    .about__grid{ grid-template-columns:1fr; gap:3rem; }
+    .about__visual{ min-height:340px; }
+    .programs__grid{ grid-template-columns:repeat(2,1fr); }
+    .contact__grid{ grid-template-columns:1fr; gap:3rem; }
+    .contact__info{ padding-left:0; }
+    .footer-top{ grid-template-columns:1fr 1fr; gap:2.5rem; }
+  }
+
+  @media (max-width: 860px){
+    .nav-links{
+      position:fixed; top:64px; left:0; right:0; bottom:0; background:var(--ink);
+      flex-direction:column; align-items:flex-start; padding:2.5rem 1.8rem; gap:1.6rem;
+      transform:translateX(100%); transition:transform .45s var(--ease);
+      overflow-y:auto;
+    }
+    .nav-links.open{ transform:translateX(0); }
+    .nav-links a{ font-size:1.3rem; }
+    .nav-cta .btn--ghost{ display:none; }
+    .nav-toggle{ display:flex; }
+    .stats{ grid-template-columns:repeat(2,1fr); }
+    .stat:nth-child(3){ border-left:1px solid var(--gold); }
+  }
+
+  @media (max-width: 700px){
+    .programs__grid{ grid-template-columns:1fr; }
+    .form-grid{ grid-template-columns:1fr; }
+    .footer-top{ grid-template-columns:1fr; gap:2.2rem; }
+    .t-quote{ font-size:1.15rem; }
+    .t-card{ padding:1.9rem 1.5rem; }
+  }
+
+  @media (max-width: 480px){
+    .hero__actions{ flex-direction:column; align-items:stretch; }
+    .hero__actions .btn{ width:100%; }
+    .stats{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+    [data-reveal]{ opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="container nav-inner">
+    <a href="#home" class="brand" aria-label="Ansari Academy, home">
+      <svg class="brand__mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="50" cy="50" r="46" stroke="#CB9B51" stroke-width="3.5"/>
+        <line x1="50" y1="12" x2="50" y2="88" stroke="#CB9B51" stroke-width="2.5"/>
+        <line x1="14" y1="50" x2="86" y2="50" stroke="#CB9B51" stroke-width="1" opacity=".4"/>
+        <circle cx="50" cy="50" r="5" fill="#E8C078"/>
+      </svg>
+      <span class="brand__text">
+        <span class="brand__name">Ansari</span>
+        <span class="brand__sub">ACADEMY</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#programs" class="nav-link">Programs</a>
+      <a href="#testimonials" class="nav-link">Testimonials</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn--ghost btn--sm">Sign In</a>
+      <a href="#contact" class="btn btn--primary btn--sm">Enroll Now</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="home">
+    <canvas class="hero__canvas" id="constellation" aria-hidden="true"></canvas>
+    <div class="hero__overlay"></div>
+    <div class="container hero__inner">
+      <p class="eyebrow" data-reveal>Ansari Academy — Est. 2010</p>
+      <h1 class="hero__headline" data-reveal>Welcome to<br><em>Ansari Academy</em></h1>
+      <p class="hero__sub" data-reveal>In this Ansari academy you will find a supportive environment that fosters learning and growth.</p>
+      <div class="hero__actions" data-reveal>
+        <a href="#programs" class="btn btn--primary">Explore Programs</a>
+        <a href="#about" class="btn btn--ghost">
+          <svg class="btn__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+          How It Works
+        </a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="stats ledger-bg" data-reveal>
+        <div class="stat">
+          <span class="stat__value mono" data-count="12400" data-suffix="+">0</span>
+          <span class="stat__label">Students Enrolled</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value mono" data-count="94" data-suffix="%">0</span>
+          <span class="stat__label">Course Completion Rate</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value mono" data-count="180" data-suffix="+">0</span>
+          <span class="stat__label">Expert Instructors</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value mono" data-count="46" data-suffix="">0</span>
+          <span class="stat__label">Countries Reached</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__copy">
+          <div class="section-head" data-reveal>
+            <p class="eyebrow">About — 01</p>
+            <h2 class="section-heading">Built by Ansari. Refined by data.</h2>
+          </div>
+
+          <p data-reveal>Ansari Academy started in a classroom, not a boardroom. Our founders were teachers who kept watching capable students fall through the cracks of one-size-fits-all instruction — not for lack of ability, but for lack of a path that fit them.</p>
+          <p data-reveal>So we built one. Every student begins with a diagnostic, not a syllabus. Every instructor is a subject specialist, not a script-reader. And every program adjusts as the student does, week over week, until the gap between "stuck" and "confident" closes for good.</p>
+
+          <div class="process" data-reveal>
+            <div class="process__step">
+              <span class="process__num mono">01</span>
+              <div>
+                <p class="process__title">Diagnose</p>
+                <p class="process__desc">A skills assessment pinpoints exactly where a student is strong and where they're stuck — no guesswork.</p>
+              </div>
+            </div>
+            <div class="process__step">
+              <span class="process__num mono">02</span>
+              <div>
+                <p class="process__title">Design a path</p>
+                <p class="process__desc">We map a learning plan around that diagnostic, pacing, format, and instructor included.</p>
+              </div>
+            </div>
+            <div class="process__step">
+              <span class="process__num mono">03</span>
+              <div>
+                <p class="process__title">Teach &amp; track</p>
+                <p class="process__desc">Live sessions and guided practice run side by side, with progress logged after every class.</p>
+              </div>
+            </div>
+            <div class="process__step">
+              <span class="process__num mono">04</span>
+              <div>
+                <p class="process__title">Adjust</p>
+                <p class="process__desc">Plans are revisited every four weeks. If something isn't working, we change it — not the student.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="credentials" data-reveal>
+            <div><span class="v mono">2014</span><span class="l">Founded</span></div>
+            <div><span class="v mono">12</span><span class="l">Avg. Class Size</span></div>
+            <div><span class="v mono">4.9/5</span><span class="l">Parent Rating</span></div>
+          </div>
+        </div>
+
+        <div class="about__visual" data-reveal>
+          <span class="about__visual-tag mono">LIVE PROGRESS LOG</span>
+          <div>
+            <div class="about__visual-card">
+              <h4>Diagnostic complete — Algebra II</h4>
+              <p>Strength: linear systems · Focus area: quadratics</p>
+            </div>
+            <div class="about__visual-card">
+              <h4>Week 4 check-in</h4>
+              <p>Quiz average up 22% since enrollment</p>
+            </div>
+            <div class="about__visual-card">
+              <h4>Instructor note</h4>
+              <p>"Ready to move ahead of pace — adjusting plan."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROGRAMS / SERVICES ===================== -->
+  <section class="programs" id="programs">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <p class="eyebrow">Programs — 02</p>
+        <h2 class="section-heading">Six paths, one mission: confident, capable students.</h2>
+        <p class="section-lead">Every program pairs a specialist instructor with a plan built around your student's actual goals — not a generic curriculum.</p>
+      </div>
+
+      <div class="programs__grid">
+
+        <article class="program-card" data-reveal>
+          <div class="program-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 5-7 4 5"/></svg>
+          </div>
+          <p class="program-card__code mono">STEM · 101</p>
+          <h3 class="program-card__title">Science &amp; Math Mastery</h3>
+          <p class="program-card__desc">Build fluency in algebra, biology, and physics through guided problem-solving and weekly labs.</p>
+          <a href="#contact" class="program-card__link">Learn more
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+
+        <article class="program-card" data-reveal>
+          <div class="program-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>
+          </div>
+          <p class="program-card__code mono">LANG · 204</p>
+          <h3 class="program-card__title">Language &amp; Communication</h3>
+          <p class="program-card__desc">Strengthen reading, writing, and public speaking through small-group workshops and live feedback.</p>
+          <a href="#contact" class="program-card__link">Learn more
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+
+        <article class="program-card" data-reveal>
+          <div class="program-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <p class="program-card__code mono">PREP · 310</p>
+          <h3 class="program-card__title">Exam &amp; College Readiness</h3>
+          <p class="program-card__desc">SAT, ACT, and AP prep built around a target score, with diagnostic-driven study plans.</p>
+          <a href="#contact" class="program-card__link">Learn more
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+
+        <article class="program-card" data-reveal>
+          <div class="program-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+          </div>
+          <p class="program-card__code mono">CODE · 220</p>
+          <h3 class="program-card__title">Coding &amp; Computer Science</h3>
+          <p class="program-card__desc">From first lines of Python to AP Computer Science, taught by working engineers.</p>
+          <a href="#contact" class="program-card__link">Learn more
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+
+        <article class="program-card" data-reveal>
+          <div class="program-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><path d="M19 12c-3 0-4-2-7-2s-4 5-9 3l3 8h10z"/></svg>
+          </div>
+          <p class="program-card__code mono">ARTS · 150</p>
+          <h3 class="program-card__title">Creative Arts &amp; Design</h3>
+          <p class="program-card__desc">Studio-style courses in creative writing, visual art, and design thinking.</p>
+          <a href="#contact" class="program-card__link">Learn more
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+
+        <article class="program-card" data-reveal>
+          <div class="program-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.5L10 14l-1-3.5 4.5-1z" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <p class="program-card__code mono">LEAD · 180</p>
+          <h3 class="program-card__title">Life Skills &amp; Leadership</h3>
+          <p class="program-card__desc">Time management, study habits, and leadership training for the years beyond the classroom.</p>
+          <a href="#contact" class="program-card__link">Learn more
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TESTIMONIALS ===================== -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <p class="eyebrow">Testimonials — 03</p>
+        <h2 class="section-heading">Real students. Real progress.</h2>
+      </div>
+
+      <div class="t-spotlight" data-reveal>
+        <div class="t-track-wrap">
+          <div class="t-track" id="tTrack">
+
+            <div class="t-slide">
+              <div class="t-card">
+                <div class="t-stars" aria-hidden="true">★★★★★</div>
+                <p class="t-quote">"Specialist teaching in Programming."</p>
+                <div class="t-person">
+                  <span class="t-avatar mono">KS</span>
+                  <span class="t-person__info">
+                    <span class="t-name">Sir Khurram</span><br>
+                    <span class="t-role">Programming Specialist</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="t-slide">
+              <div class="t-card">
+                <div class="t-stars" aria-hidden="true">★★★★★</div>
+                <p class="t-quote">"Specialist teaching in Math."</p>
+                <div class="t-person">
+                  <span class="t-avatar mono">NA</span>
+                  <span class="t-person__info">
+                    <span class="t-name">Sir Naveed</span><br>
+                    <span class="t-role">Math Specialist</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="t-slide">
+              <div class="t-card">
+                <div class="t-stars" aria-hidden="true">★★★★★</div>
+                <p class="t-quote">"Specialist teaching in Pakistan Studies."</p>
+                <div class="t-person">
+                  <span class="t-avatar mono">AQ</span>
+                  <span class="t-person__info">
+                    <span class="t-name">Sir Abdul Qadir</span><br>
+                    <span class="t-role">PS Specialist</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="t-slide">
+              <div class="t-card">
+                <div class="t-stars" aria-hidden="true">★★★★★</div>
+                <p class="t-quote">"Specailist teaching in Database Management."</p>
+                <div class="t-person">
+                  <span class="t-avatar mono">AQ</span>
+                  <span class="t-person__info">
+                    <span class="t-name">Mam Ayesha</span><br>
+                    <span class="t-role">Database Specialist</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="t-slide">
+              <div class="t-card">
+                <div class="t-stars" aria-hidden="true">★★★★★</div>
+                <p class="t-quote">"Specialist teaching in Artificial Intelligence."</p>
+                <div class="t-person">
+                  <span class="t-avatar mono">RS</span>
+                  <span class="t-person__info">
+                    <span class="t-name">Mam Rabia</span><br>
+                    <span class="t-role">AI Specialist</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="t-controls">
+          <button class="t-arrow" id="tPrev" aria-label="Previous testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="t-dots" id="tDots"></div>
+          <button class="t-arrow" id="tNext" aria-label="Next testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Admissions — 04</p>
+        <h2 class="section-heading">Get Admission in Ansari Academy</h2>
+        <p class="section-lead">Tell us about your student and we'll recommend a path. Most families hear back within one business day.</p>
+      </div>
+
+      <div class="contact__grid">
+
+        <div class="contact__info ledger-bg" data-reveal>
+          <div class="info-row">
+            <span class="info-row__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 7l9 6 9-6M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg>
+            </span>
+            <div>
+              <p class="info-row__label">Email</p>
+              <p class="info-row__value">Ansariacademey@edu.pk</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-row__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <div>
+              <p class="info-row__label">Phone</p>
+              <p class="info-row__value">+(92) 3241846077</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-row__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </span>
+            <div>
+              <p class="info-row__label">Office Hours</p>
+              <p class="info-row__value">Mon–Fri, 8am–6pm ET</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-row__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div>
+              <p class="info-row__label">Office</p>
+              <p class="info-row__value">GCUF Main Campus</p>
+            </div>
+          </div>
+
+          <div class="social-row">
+            <a href="#" aria-label="Ansari Academy on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7l-5.5-7.2L4.5 22H1.4l8.1-9.3L1 2h7.2l5 6.6L18.9 2zm-1.2 18h1.7L7.4 4H5.6l12.1 16z"/></svg></a>
+            <a href="#" aria-label="Ansari Academy on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="Ansari Academy on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3-.02-2.97-1.82-2.97-1.82 0-2.1 1.42-2.1 2.88V21h-3.98V9z"/></svg></a>
+            <a href="#" aria-label="Ansari Academy on YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l6 3-6 3z" fill="currentColor" stroke="none"/></svg></a>
+          </div>
+        </div>
+
+        <div class="form-card" data-reveal>
+          <form id="contactForm" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <input type="text" id="fname" name="name" placeholder=" " autocomplete="name" required>
+                <label for="fname">Full name</label>
+                <span class="field-error" id="errName"></span>
+              </div>
+              <div class="field">
+                <input type="email" id="femail" name="email" placeholder=" " autocomplete="email" required>
+                <label for="femail">Email address</label>
+                <span class="field-error" id="errEmail"></span>
+              </div>
+            </div>
+
+            <div class="field">
+              <select id="fprogram" name="program">
+                <option value="" disabled selected hidden></option>
+                <option>Science &amp; Math Mastery</option>
+                <option>Language &amp; Communication</option>
+                <option>Exam &amp; College Readiness</option>
+                <option>Coding &amp; Computer Science</option>
+                <option>Creative Arts &amp; Design</option>
+                <option>Life Skills &amp; Leadership</option>
+                <option>Not sure yet</option>
+              </select>
+              <label for="fprogram">Program of interest</label>
+            </div>
+
+            <div class="field">
+              <textarea id="fmessage" name="message" placeholder=" " required></textarea>
+              <label for="fmessage">Tell us about your student</label>
+              <span class="field-error" id="errMessage"></span>
+            </div>
+
+            <div class="form-foot">
+              <p class="form-note">By submitting, you agree to be contacted about Ansari Academy programs.</p>
+              <button type="submit" class="btn btn--primary" id="submitBtn">
+                <span class="submit-spinner" aria-hidden="true"></span>
+                <span class="btn__label">Send Message</span>
+              </button>
+            </div>
+
+            <div class="form-success" id="formSuccess" role="status">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+              <p><strong>Message sent.</strong> A member of our admissions team will reach out within one business day.</p>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#home" class="brand" aria-label="Ansari Academy, home">
+          <svg class="brand__mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="50" cy="50" r="46" stroke="#CB9B51" stroke-width="3.5"/>
+            <line x1="50" y1="12" x2="50" y2="88" stroke="#CB9B51" stroke-width="2.5"/>
+            <circle cx="50" cy="50" r="5" fill="#E8C078"/>
+          </svg>
+          <span class="brand__text">
+            <span class="brand__name">Ansari</span>
+            <span class="brand__sub">ACADEMY</span>
+          </span>
+        </a>
+        <p>Personalized learning programs for students from middle school through college prep.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="mono">Explore</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="mono">Programs</h5>
+        <ul>
+          <li><a href="#programs">STEM Mastery</a></li>
+          <li><a href="#programs">Exam Prep</a></li>
+          <li><a href="#programs">Coding &amp; CS</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="mono">Study Notes</h5>
+        <p style="font-size:.85rem; color:var(--slate); margin-top:1.2rem;">Get one practical study tip in your inbox, every other week.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="you@email.com" aria-label="Email for newsletter" required>
+          <button type="submit" aria-label="Subscribe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </form>
+        <p class="newsletter-msg" id="newsletterMsg"></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Ansari Academy. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+(function(){
+  "use strict";
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ============================= */
+  /* HERO CONSTELLATION CANVAS      */
+  /* ============================= */
+  var canvas = document.getElementById('constellation');
+  if(canvas){
+    var ctx = canvas.getContext('2d');
+    var w, h, nodes = [];
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    function resizeCanvas(){
+      var rect = canvas.parentElement.getBoundingClientRect();
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = rect.height + 'px';
+      w = canvas.width = rect.width * dpr;
+      h = canvas.height = rect.height * dpr;
+    }
+    function initNodes(){
+      var count = Math.min(70, Math.max(20, Math.floor((w * h) / (16000 * dpr * dpr))));
+      nodes = [];
+      for(var i=0;i<count;i++){
+        nodes.push({
+          x: Math.random()*w,
+          y: Math.random()*h,
+          vx: (Math.random()-0.5)*0.18*dpr,
+          vy: (Math.random()-0.5)*0.18*dpr,
+          r: (Math.random()*1.3+0.6)*dpr
+        });
+      }
+    }
+    function frame(){
+      ctx.clearRect(0,0,w,h);
+      for(var i=0;i<nodes.length;i++){
+        var n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+        if(n.x < 0 || n.x > w) n.vx *= -1;
+        if(n.y < 0 || n.y > h) n.vy *= -1;
+      }
+      var maxDist = 150*dpr;
+      for(var i=0;i<nodes.length;i++){
+        for(var j=i+1;j<nodes.length;j++){
+          var a = nodes[i], b = nodes[j];
+          var dx = a.x-b.x, dy = a.y-b.y;
+          var dist = Math.sqrt(dx*dx+dy*dy);
+          if(dist < maxDist){
+            ctx.strokeStyle = 'rgba(203,155,81,' + ((1-dist/maxDist)*0.32) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x,a.y);
+            ctx.lineTo(b.x,b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      for(var i=0;i<nodes.length;i++){
+        var n = nodes[i];
+        ctx.beginPath();
+        ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+        ctx.fillStyle = 'rgba(232,192,120,0.85)';
+        ctx.fill();
+      }
+      if(!prefersReduced) requestAnimationFrame(frame);
+    }
+
+    resizeCanvas(); initNodes(); frame();
+    var resizeTimer;
+    window.addEventListener('resize', function(){
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function(){ resizeCanvas(); initNodes(); if(prefersReduced) frame(); }, 150);
+    });
+  }
+
+  /* ============================= */
+  /* HEADER SCROLL STATE            */
+  /* ============================= */
+  var header = document.getElementById('siteHeader');
+  var backToTop = document.getElementById('backToTop');
+  function onScroll(){
+    var y = window.scrollY || window.pageYOffset;
+    header.classList.toggle('scrolled', y > 30);
+    backToTop.classList.toggle('visible', y > 600);
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  backToTop.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+  });
+
+  /* ============================= */
+  /* MOBILE NAV TOGGLE               */
+  /* ============================= */
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', function(){
+    var open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  navLinks.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ============================= */
+  /* ACTIVE NAV LINK ON SCROLL       */
+  /* ============================= */
+  var sections = document.querySelectorAll('main section[id]');
+  var navAnchors = document.querySelectorAll('.nav-link');
+  var sectionIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var id = entry.target.getAttribute('id');
+        navAnchors.forEach(function(a){
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  sections.forEach(function(s){ sectionIO.observe(s); });
+
+  /* ============================= */
+  /* SCROLL REVEAL                   */
+  /* ============================= */
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  if(prefersReduced){
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  } else {
+    var revealIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry, idx){
+        if(entry.isIntersecting){
+          var el = entry.target;
+          var siblings = Array.prototype.slice.call(el.parentElement.children).filter(function(c){
+            return c.hasAttribute && c.hasAttribute('data-reveal');
+          });
+          var pos = siblings.indexOf(el);
+          el.style.transitionDelay = (Math.min(pos,5) * 80) + 'ms';
+          el.classList.add('is-visible');
+          revealIO.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(function(el){ revealIO.observe(el); });
+  }
+
+  /* ============================= */
+  /* ANIMATED COUNTERS                */
+  /* ============================= */
+  function animateCounter(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var suffix = el.getAttribute('data-suffix') || '';
+    var duration = 1500;
+    var startTime = null;
+    function step(ts){
+      if(!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var value = Math.floor(target * eased);
+      el.textContent = value.toLocaleString() + suffix;
+      if(progress < 1) requestAnimationFrame(step);
+      else el.textContent = target.toLocaleString() + suffix;
+    }
+    if(prefersReduced){ el.textContent = target.toLocaleString() + suffix; }
+    else requestAnimationFrame(step);
+  }
+  var counterIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        animateCounter(entry.target);
+        counterIO.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('[data-count]').forEach(function(el){ counterIO.observe(el); });
+
+  /* ============================= */
+  /* TESTIMONIAL CAROUSEL             */
+  /* ============================= */
+  var track = document.getElementById('tTrack');
+  var slides = track ? track.children : [];
+  var dotsWrap = document.getElementById('tDots');
+  var prevBtn = document.getElementById('tPrev');
+  var nextBtn = document.getElementById('tNext');
+  var current = 0;
+  var autoplayTimer;
+
+  if(track && slides.length){
+    for(var i=0;i<slides.length;i++){
+      var dot = document.createElement('button');
+      dot.className = 't-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to testimonial ' + (i+1));
+      (function(idx){
+        dot.addEventListener('click', function(){ goTo(idx); restartAutoplay(); });
+      })(i);
+      dotsWrap.appendChild(dot);
+    }
+    var dots = dotsWrap.querySelectorAll('.t-dot');
+
+    function goTo(index){
+      current = (index + slides.length) % slides.length;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function(d, i){ d.classList.toggle('active', i === current); });
+    }
+    function next(){ goTo(current + 1); }
+    function prev(){ goTo(current - 1); }
+    function restartAutoplay(){
+      clearInterval(autoplayTimer);
+      if(!prefersReduced) autoplayTimer = setInterval(next, 5500);
+    }
+
+    prevBtn.addEventListener('click', function(){ prev(); restartAutoplay(); });
+    nextBtn.addEventListener('click', function(){ next(); restartAutoplay(); });
+
+    var spotlight = document.querySelector('.t-spotlight');
+    spotlight.addEventListener('mouseenter', function(){ clearInterval(autoplayTimer); });
+    spotlight.addEventListener('mouseleave', restartAutoplay);
+
+    goTo(0);
+    restartAutoplay();
+  }
+
+  /* ============================= */
+  /* CONTACT FORM VALIDATION          */
+  /* ============================= */
+  var form = document.getElementById('contactForm');
+  var submitBtn = document.getElementById('submitBtn');
+  var successBox = document.getElementById('formSuccess');
+  var programSelect = document.getElementById('fprogram');
+
+  if(programSelect){
+    programSelect.addEventListener('change', function(){
+      programSelect.classList.toggle('has-value', !!programSelect.value);
+    });
+  }
+
+  function setError(fieldId, errId, message){
+    var field = document.getElementById(fieldId);
+    var err = document.getElementById(errId);
+    field.closest('.field').classList.toggle('invalid', !!message);
+    if(err) err.textContent = message || '';
+  }
+
+  function validateForm(){
+    var valid = true;
+    var name = document.getElementById('fname').value.trim();
+    var email = document.getElementById('femail').value.trim();
+    var message = document.getElementById('fmessage').value.trim();
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(name.length < 2){
+      setError('fname','errName','Please enter your full name.'); valid = false;
+    } else setError('fname','errName','');
+
+    if(!emailPattern.test(email)){
+      setError('femail','errEmail','Please enter a valid email address.'); valid = false;
+    } else setError('femail','errEmail','');
+
+    if(message.length < 10){
+      setError('fmessage','errMessage','Tell us a little more (10+ characters).'); valid = false;
+    } else setError('fmessage','errMessage','');
+
+    return valid;
+  }
+
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      successBox.classList.remove('show');
+      if(!validateForm()) return;
+
+      submitBtn.classList.add('is-loading');
+      submitBtn.setAttribute('disabled', 'true');
+
+      setTimeout(function(){
+        submitBtn.classList.remove('is-loading');
+        submitBtn.removeAttribute('disabled');
+        successBox.classList.add('show');
+        form.reset();
+        programSelect.classList.remove('has-value');
+      }, 1100);
+    });
+
+    ['fname','femail','fmessage'].forEach(function(id){
+      document.getElementById(id).addEventListener('input', function(){
+        this.closest('.field').classList.remove('invalid');
+      });
+    });
+  }
+
+  /* ============================= */
+  /* NEWSLETTER FORM                  */
+  /* ============================= */
+  var newsletterForm = document.getElementById('newsletterForm');
+  var newsletterMsg = document.getElementById('newsletterMsg');
+  if(newsletterForm){
+    newsletterForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      newsletterMsg.textContent = 'You\'re subscribed — welcome aboard.';
+      newsletterForm.reset();
+    });
+  }
+
+  /* ============================= */
+  /* FOOTER YEAR                      */
+  /* ============================= */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+})();
+</script>
+</body>
+</html>
